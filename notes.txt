@@ -1,0 +1,12 @@
+swipl 
+
+consult("file.pl").
+
+% 1:-
+% returns only one order, needs modification to return annually
+list_order(X,List):-
+    customer(CustomerId,X),
+    order(CustomerId , _ , List).
+
+% 3:-
+% takes name, orderid -> matches the name with customer id  and with the customer id it gets , it gets the order
