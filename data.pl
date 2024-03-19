@@ -184,3 +184,12 @@ whyToBoycott(Company, Justification) :-
 whyToBoycott(Item, Justification) :-
     item(Item, Company, _), boycott_company(Company, Justification).
 
+
+
+%P11
+%calculate the difference in price between the boycott item and its alternative.
+getTheDiffInPriceBetProductAndAlt(Product, Alt, Diff) :-
+    item(Product, BoycottedCompany, ProPrice),
+    alternative(Product, Alt),
+    item(Alt, _, AltPrice),
+    Diff is ProPrice - AltPrice.
