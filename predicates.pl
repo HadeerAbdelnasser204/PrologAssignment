@@ -1,4 +1,5 @@
 :-consult("data.pl").
+:- dynamic(item/3).
 
 %SUB RULE%
 % get length
@@ -34,3 +35,11 @@ getItemInOrderByID(X, OrderID , Items):-
 getNumOfItems(CustomerName,OrderID,Count):-
        getItemInOrderByID(CustomerName,OrderID,Items), % get List of items
        calcLength(Items, Count).
+       
+% 12:- 
+%add
+add_item(ItemName, Type, Quantity) :-
+    assertz(item(ItemName, Type, Quantity)).
+%remove
+ remove_item(ItemName, Type, Quantity):-
+      retract(item(ItemName, Type, Quantity)).
