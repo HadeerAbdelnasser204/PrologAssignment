@@ -175,3 +175,12 @@ getItemInOrderByID(X, OrderID , Items):-
     customer(CustomerId,X),
     order(CustomerId,OrderID, Items).
 
+
+% P7
+% take company name or an item name and find the justification for boycotting it
+
+whyToBoycott(Company, Justification) :- 
+    boycott_company(Company, Justification).
+whyToBoycott(Item, Justification) :-
+    item(Item, Company, _), boycott_company(Company, Justification).
+
