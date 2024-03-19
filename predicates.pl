@@ -33,13 +33,30 @@ getItemInOrderByID(X, OrderID , Items):-
 % 4:-
 % Return num of items in a specific customer order
 getNumOfItems(CustomerName,OrderID,Count):-
-       getItemInOrderByID(CustomerName,OrderID,Items), % get List of items
-       calcLength(Items, Count).
-       
+    getItemInOrderByID(CustomerName,OrderID,Items), % get List of items
+    calcLength(Items, Count).
+
+
+% P7
+% take company name or an item name and find the justification for boycotting it
+whyToBoycott(Company, Justification) :- 
+    boycott_company(Company, Justification).
+whyToBoycott(Item, Justification) :-
+    item(Item, Company, _), boycott_company(Company, Justification).
+
+
+%P11
+%calculate the difference in price between the boycott item and its alternative.
+getTheDiffInPriceBetProductAndAlt(Product, Alt, Diff) :-
+    item(Product, BoycottedCompany, ProPrice),
+    alternative(Product, Alt),
+    item(Alt, _, AltPrice),
+    Diff is ProPrice - AltPrice.
+
 % 12:- 
 %add
 add_item(ItemName, Type, Quantity) :-
     assertz(item(ItemName, Type, Quantity)).
 %remove
- remove_item(ItemName, Type, Quantity):-
-      retract(item(ItemName, Type, Quantity)).
+remove_item(ItemName, Type, Quantity):-
+    retract(item(ItemName, Type, Quantity)).
