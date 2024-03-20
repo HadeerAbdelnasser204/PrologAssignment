@@ -62,6 +62,22 @@ whyToBoycott(Item, Justification) :-
     item(Item, Company, _), boycott_company(Company, Justification).
 
 
+% P8
+%Given an username and order ID, remove all the boycott items from this order.
+removeBoycottItemsFromAnOrder(CustomerName, OrderID, NewList):-
+    getItemInOrderByID(CustomerName, OrderID, Items),
+    remove(Items, NewList).
+
+remove([], []).
+remove([H|T], [H|NewList]):-
+    \+ whyToBoycott(H, _),
+    remove(T, NewList).
+
+remove([H|T], NewList):-
+    whyToBoycott(H, _),
+    remove(T, NewList).    
+
+
 % 9:-
 % Given an username and order ID, update the order such that all boycott items are replaced by an alternative (if exists).
 replaceBoycottItemsFromAnOrder(Name, OrderID, NewList) :-
