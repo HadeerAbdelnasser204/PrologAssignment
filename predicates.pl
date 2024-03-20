@@ -40,7 +40,20 @@ getNumOfItems(CustomerName,OrderID,Count):-
     getItemInOrderByID(CustomerName,OrderID,Items), % get List of items
     calcLength(Items, Count).
 
+%P5
+%Calculate the price of a given order given Customer Name and order id
+calcPriceOfOrder(CustomerName, OrderID, TotalPrice):-
+    getItemsInOrderById(CustomerName, OrderID, Items),
+    calc(Items, TotalPrice).
 
+calc([], 0).
+calc([H|T], TotalPrice):-
+    item(H, _, Price),
+    calc(T, NewTotalPrice),
+    TotalPrice is Price + NewTotalP
+
+
+    
 % 6:-
 % Given the item name or company name, determine whether we need to boycott or not.
 % check is boycott with company name.
