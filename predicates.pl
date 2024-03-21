@@ -43,14 +43,14 @@ getNumOfItems(CustomerName,OrderID,Count):-
 %P5
 %Calculate the price of a given order given Customer Name and order id
 calcPriceOfOrder(CustomerName, OrderID, TotalPrice):-
-    getItemsInOrderById(CustomerName, OrderID, Items),
+    getItemInOrderByID(CustomerName, OrderID, Items),
     calc(Items, TotalPrice).
 
 calc([], 0).
 calc([H|T], TotalPrice):-
     item(H, _, Price),
     calc(T, NewTotalPrice),
-    TotalPrice is Price + NewTotalP
+    TotalPrice is Price + NewTotalPrice.
 
 
     
@@ -79,7 +79,7 @@ whyToBoycott(Item, Justification) :-
 %Given an username and order ID, remove all the boycott items from this order.
 removeBoycottItemsFromAnOrder(CustomerName, OrderID, NewList):-
     getItemInOrderByID(CustomerName, OrderID, Items),
-    remove(Items, NewList).
+    remove(Items, NewList),!.
 
 remove([], []).
 remove([H|T], [H|NewList]):-
