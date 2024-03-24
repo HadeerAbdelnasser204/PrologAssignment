@@ -64,7 +64,7 @@ order_matches(order(CustomerId1, OrderID1, _), order(CustomerId2, OrderID2, _)) 
 % 2:-
 % Return number of orders of a specific customer.
 countOrdersOfCustomer(CustomerId,Count):-
- list_order(CustomerId, Orders),
+ list_orders(CustomerId, Orders),
  calcLength(Orders, Count).
 
 
